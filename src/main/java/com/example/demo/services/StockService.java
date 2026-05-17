@@ -1,7 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.configuration.Config;
-import com.example.demo.mapper.EntrepotMapper;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,7 @@ import com.example.demo.repositories.StockRepository;
 @Service
 public class StockService {
 
-	private final EntrepotMapper entrepotMapper;
 
-	private final Config config;
 
 	@Autowired
 	private StockRepository stockRepository;
@@ -32,10 +29,7 @@ public class StockService {
 	@Autowired
 	private EntrepotRepository entrepotRepository;
 
-	StockService(Config config, EntrepotMapper entrepotMapper) {
-		this.config = config;
-		this.entrepotMapper = entrepotMapper;
-	}
+
 
 	public List<Stock> trouverTous(){
 		return stockRepository.findAll();
