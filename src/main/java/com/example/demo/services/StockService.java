@@ -39,6 +39,9 @@ public class StockService {
 		return stockRepository.findById(id)
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Stock non trouvee "));
 	}
+	public List<Stock> trouverParEntrepot(int entrepotId) {
+	    return stockRepository.findByEntrepotId(entrepotId);
+	}
 
 	
 	public List<Stock> trouverStockEnAlerte(){

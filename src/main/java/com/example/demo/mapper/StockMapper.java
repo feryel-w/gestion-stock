@@ -15,7 +15,7 @@ public class StockMapper {
 	@Autowired
 	private ModelMapper mmapper;
 	
-	private StockDTO toDto(Stock s) {
+	public StockDTO toDto(Stock s) {
 		StockDTO sDto = mmapper.map(s, StockDTO.class);
 		sDto.setNomProduit(s.getProduit().getNom());
 		sDto.setNomEntrepot(s.getEntrepot().getNom());
