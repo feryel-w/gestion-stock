@@ -43,8 +43,8 @@ public class ProduitController {
 		return produitMapper.toListDto(produitService.trouverParFournisseur(fournisseur));
 	}
 	@PostMapping
-	public Produit ajouter(@RequestBody Produit p) {
-		return produitService.ajouter(p);
+	public ProduitDTO ajouter(@RequestBody Produit p) {
+	    return produitMapper.toDto(produitService.ajouter(p));
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<String> miseAJour(@PathVariable int id, @RequestBody Produit p){

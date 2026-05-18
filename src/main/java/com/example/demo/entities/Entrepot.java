@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Entrepot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(nullable = false)
 	private String nom;

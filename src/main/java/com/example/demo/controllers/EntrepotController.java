@@ -33,8 +33,8 @@ public class EntrepotController {
 	}
 	
 	@PostMapping
-	public Entrepot ajouter(@RequestBody Entrepot e) {
-		return entrepotService.ajouter(e);
+	public EntrepotDTO ajouter(@RequestBody Entrepot e) {
+	    return entrepotMapper.toDto(entrepotService.ajouter(e));
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<String> miseAJour(@PathVariable int id, @RequestBody Entrepot e){

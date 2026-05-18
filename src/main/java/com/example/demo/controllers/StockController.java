@@ -45,8 +45,8 @@ public class StockController {
 		return stockMapper.toListDto(stockService.trouverStockEnAlerte());
 	}
 	@PostMapping("/produit/{produitId}/entrepot/{entrepotId}")
-	public Stock ajouter(@PathVariable int produitId, @PathVariable int entrepotId, @RequestBody Stock s) {
-		return stockService.ajouter(produitId, entrepotId, s);
+	public StockDTO ajouter(@PathVariable int produitId, @PathVariable int entrepotId, @RequestBody Stock s) {
+	    return stockMapper.toDto(stockService.ajouter(produitId, entrepotId, s));
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<String> miseAJour(@PathVariable int id, @RequestBody Stock s){

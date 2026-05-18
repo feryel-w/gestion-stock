@@ -15,7 +15,7 @@ public class EntrepotMapper {
 
 	@Autowired
 	private ModelMapper mmapper;
-	
+	@Autowired
 	private StockMapper stockMapper;
 	
 	public EntrepotDTO toDto(Entrepot e) {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.MouvementStockDTO;
-import com.example.demo.entities.MouvementStock;
 import com.example.demo.mapper.MouvementStockMapper;
 import com.example.demo.services.MouvementStockService;
 
@@ -40,12 +39,12 @@ public class MouvementStockController {
 	}
 	
 	@PostMapping
-	public MouvementStock enregistrerMouvement(
-			@RequestParam int produitId,
-			@RequestParam int entrepotId,
-			@RequestParam String type,
-			@RequestParam int quantite) {
-		return mouvementService.enregistrerMouvement(produitId, entrepotId, type, quantite);
+	public MouvementStockDTO enregistrerMouvement(
+	        @RequestParam int produitId,
+	        @RequestParam int entrepotId,
+	        @RequestParam String type,
+	        @RequestParam int quantite) {
+	    return mouvemenMapper.toDto(mouvementService.enregistrerMouvement(produitId, entrepotId, type, quantite));
 	}
 			
 }

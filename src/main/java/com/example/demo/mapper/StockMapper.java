@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -31,10 +32,10 @@ public class StockMapper {
 	
 	
 	
-	public List<StockDTO> toListDto(List<Stock> listeStock){
-		return listeStock.stream()
-				.map(s -> toDto(s))
-				.collect(Collectors.toList());
-		
+	public List<StockDTO> toListDto(List<Stock> listeStock) {
+	    if (listeStock == null) return new ArrayList<>();
+	    return listeStock.stream()
+	            .map(s -> toDto(s))
+	            .collect(Collectors.toList());
 	}
 }
