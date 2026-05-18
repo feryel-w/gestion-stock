@@ -36,7 +36,7 @@ public class MouvementStockService {
 	}
 	
 	public List<MouvementStock> trouverParEntrepot(int entrepotId){
-		return mouvementRepository.findByEntrepotID(entrepotId);
+		return mouvementRepository.findByEntrepotId(entrepotId);
 	}
 	
 	public List<MouvementStock> trouverParProduit(int produiId){

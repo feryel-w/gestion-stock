@@ -8,7 +8,7 @@ import com.example.demo.entities.MouvementStock;
 
 public interface MouvementStockRepository extends JpaRepository<MouvementStock,Integer> {
 	
-	List<MouvementStock> findByEntrepotID(int entrepotId);
+	List<MouvementStock> findByEntrepotId(int entrepotId);
 	
 	List<MouvementStock> findByProduitId(int produitId);
 }
