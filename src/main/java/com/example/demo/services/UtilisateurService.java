@@ -10,9 +10,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.entities.Utilisateur;
 import com.example.demo.repositories.UtilisateurRepository;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class UtilisateurService {
+	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@Autowired
 	private UtilisateurRepository utilisateurRepository;
@@ -30,10 +31,16 @@ public class UtilisateurService {
 	}
 	
 	public Utilisateur inscrire(Utilisateur u) {
-		if(utilisateurRepository.existsByEmail(u.getEmail())) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email deja utilisee");
-		}
-		return utilisateurRepository.save(u);
+	    if (utilisateurRepository.existsByEmail(u.getEmail())) {
+	        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email deja utilise");
+	    }
+	    String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+	    if (!u.getMotDePasse().matches(regex)) {
+	        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
+	            "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractere special (@$!%*?&)");
+	    }
+	    u.setMotDePasse(passwordEncoder.encode(u.getMotDePasse()));
+	    return utilisateurRepository.save(u);
 	}
 	
 	public ResponseEntity<String> miseAJour(int id, Utilisateur u){
@@ -61,7 +68,7 @@ public class UtilisateurService {
 	public Utilisateur connecter(String email, String motDePasse) {
 	    Utilisateur u = utilisateurRepository.findByEmail(email)
 	            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Email incorrect"));
-	    if (!u.getMotDePasse().equals(motDePasse)) {
+	    if (!passwordEncoder.matches(motDePasse, u.getMotDePasse())) {
 	        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Mot de passe incorrect");
 	    }
 	    return u;

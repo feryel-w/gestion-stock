@@ -31,8 +31,9 @@ public class Utilisateur {
 	private String email;
 	
     @NotBlank(message = "Le mot de passe est obligatoire")
-    @Size(min = 4, message = "Le mot de passe doit avoir au moins 4 caracteres")
-	private String motDePasse;
+    @Size(min = 8, message = "Le mot de passe doit avoir au moins 8 caracteres")
+    @Column(nullable = false)
+    private String motDePasse;
 	
     @NotBlank(message = "Le role est obligatoire")
 	private String role;
