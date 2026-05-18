@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.UtilisateurDTO;
@@ -12,6 +13,7 @@ import com.example.demo.entities.Utilisateur;
 @Component
 public class UtilisateurMapper {
 	
+	@Autowired
 	private ModelMapper mmapper;
 	
 	public UtilisateurDTO toDto(Utilisateur u ) {

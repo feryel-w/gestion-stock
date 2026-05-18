@@ -19,6 +19,8 @@ import com.example.demo.entities.Utilisateur;
 import com.example.demo.mapper.UtilisateurMapper;
 import com.example.demo.services.UtilisateurService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/utilisateurs")
 public class UtilisateurController {
@@ -44,7 +46,7 @@ public class UtilisateurController {
 	}
 	
 	@PostMapping("/inscrire")
-	public UtilisateurDTO inscrire(@RequestBody Utilisateur u) {
+	public UtilisateurDTO inscrire(@Valid @RequestBody Utilisateur u) {
 		return utilisateurMapper.toDto(utilisateurService.inscrire(u));
 	}
 	@PostMapping("/connecter")	
